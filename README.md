@@ -17,33 +17,33 @@ The goal is to **measure performance and efficiency** while maintaining accurate
    
 5. **Performance Evaluation**  
 Measures and compares the **execution time** of four code designs:
-- 🧩 **Sequential Design** — Basic single-threaded implementation  
-- ⚙️ **OpenMP** — Shared-memory parallelism using threads  
-- 🌐 **MPI** — Distributed-memory parallelism across processes or nodes  
-- 🔗 **Hybrid (MPI + OpenMP)** — Combines both for optimal speed and scalability
+-  **Sequential Design** — Basic single-threaded implementation  
+-  **OpenMP** — Shared-memory parallelism using threads  
+-  **MPI** — Distributed-memory parallelism across processes or nodes  
+-  **Hybrid (MPI + OpenMP)** — Combines both for optimal speed and scalability
 
 ---
 
-## ⚙️ Program Designs
+##  Program Designs
 
-### 1️⃣ Sequential Design
+### 1- Sequential Design
 - Standard single-threaded C/C++ program.
 - Reads the DNA sequence file line by line.
 - Counts character and subsequence occurrences using loops.
 - **Used as a baseline** for performance comparison.
 
-### 2️⃣ OpenMP Design (Shared Memory)
+### 2- OpenMP Design (Shared Memory)
 - Utilizes multiple threads within the same machine.
 - Each thread processes a segment of the DNA sequence in parallel.
 - Reduces runtime through **loop-level parallelism** and **atomic operations** for shared counters.
 
-### 3️⃣ MPI Design (Distributed Memory)
+### 3- MPI Design (Distributed Memory)
 - Distributes the DNA sequence across multiple **nodes or processes**.
 - Each process counts locally, then sends results to a master process.
 - Ideal for **cluster or multi-node environments**.
 - Uses `MPI_Reduce()` to aggregate results efficiently.
 
-### 4️⃣ Hybrid Design (MPI + OpenMP)
+### 4- Hybrid Design (MPI + OpenMP)
 - Combines **MPI** (for inter-node communication) with **OpenMP** (for intra-node threading).
 - Each MPI process handles a subset of data and uses OpenMP threads for local computation.
 - Maximizes resource utilization across both **distributed and shared memory systems**.
@@ -51,11 +51,11 @@ Measures and compares the **execution time** of four code designs:
 
 ---
 
-## 🏆 Best Design — Hybrid (MPI + OpenMP)
+##  Best Design — Hybrid (MPI + OpenMP)
 
 The **Hybrid Approach** is the **most efficient and scalable** design among the four implementations.
 
-### 🚀 Why Hybrid Wins:
+###  Why Hybrid Wins:
 - **Dual-Level Parallelism:**  
 Uses **MPI** across nodes (distributed memory) and **OpenMP** within each node (shared memory).  
 This fully utilizes modern multi-core, multi-node architectures.
